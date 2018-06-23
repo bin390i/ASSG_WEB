@@ -1,0 +1,3 @@
+<!--pages/goodsAppraisal/goodsAppraisal.wxml-->
+<import src="/pages/detail/detail.wxml" />
+  <template is="appraises" data='{{appraises}}'/>

@@ -1,0 +1,68 @@
+/* pages/topic/topic_2/topic_2.wxss */
+@import "/pages/list/list.wxss";
+
+page {
+  background-color: white;
+}
+
+.topic-name {
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+
+.topic-name text {
+  color: white;
+  font-size: 18px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+.goods {
+  display: flex;
+  height: 250rpx;
+  margin: 0rpx 20rpx 20rpx 20rpx;
+  border: 1rpx solid #c7c7c7;
+  box-shadow: 10rpx 10rpx 10rpx #eee9e9;
+}
+
+.goods .goods-img {
+  height: 100%;
+  width: 260rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.goods .goods-img image {
+  width: 200rpx;
+  height: 200rpx;
+}
+
+.goods .cont {
+  display: flex;
+  flex-direction: column;
+  width: 440rpx;
+}
+
+.goods .goods-buy {
+  width: 140rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-align: center;
+  border-radius: 50rpx;
+  float: right;
+  margin-top: 20rpx;
+  margin-left: 200rpx;
+}
+
+.goods .goods-buy text {
+  color: white;
+  font-size: 26rpx;
+}
+
+.line-limit-length {
+  text-overflow: ellipsis;
+  height: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+}

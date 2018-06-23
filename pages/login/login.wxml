@@ -1,0 +1,20 @@
+<!--pages/login/login.wxml-->
+
+
+
+<image src='{{login}}' style='width:100%;height:{{sysHeight}}px;position:fixed'></image>
+
+<view class='login' style='  height: {{sysHeight}}px'>
+  <!-- 需要使用 button 来授权登录 -->
+  <view class='auth' wx:if='{{!authSuccess}}'  open-type="getUserInfo">
+    <view>
+      <text style='font-size: 14px;'>为了更好的给您提供服务,请允许我获取你的信息!</text>
+    </view>
+    <view class='pemit'>
+      <button wx:if='{{!authSuccess}}' type='primary' size='mini'  open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">授权登录</button>
+    </view>
+  </view>
+
+  <!--loading  -->
+  <loading wx:if='{{authSuccess}}'>登录中...</loading>
+</view>

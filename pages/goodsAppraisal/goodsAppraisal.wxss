@@ -1,0 +1,2 @@
+/* pages/goodsAppraisal/goodsAppraisal.wxss */
+@import "/pages/detail/detail.wxss";

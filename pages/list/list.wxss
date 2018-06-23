@@ -1,0 +1,70 @@
+/* pages/list/list.wxss */
+
+.goods {
+  display: flex;
+  padding: 10pX 0 10px 10px;
+  border-bottom: 1px solid #F5F4F9;
+  background-color: white;
+}
+
+.goods-img {
+  width: 180rpx;
+  height: 180rpx;
+}
+
+.goods-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.image {
+  width: 100%;
+  height: 180rpx;
+}
+
+.good-des {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 55%;
+  margin-left: 10px;
+}
+
+.add-icon {
+  margin-top: 60px;
+}
+
+.cart {
+  background-color: #21C0AE;
+  position: fixed;
+  bottom: 200rpx;
+  right: 0;
+  margin-right: 50rpx;
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 150rpx;
+  border-radius: 10rpx;
+  opacity: 0.5;
+}
+
+.cart image {
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.cart .cart-num {
+  position: fixed;
+  bottom: 270rpx;
+  right: 0;
+  margin-right: 30rpx;
+  background-color: red;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 25rpx;
+  text-align: center;
+  line-height: 40rpx;
+}

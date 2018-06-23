@@ -1,0 +1,24 @@
+/* pages/login/login.wxss */
+
+.login {
+  z-index: 500;
+  display: flex;
+  justify-content: center;
+}
+
+.auth {
+  width: 500rpx;
+  height: 400rpx;
+  z-index: 600;
+  margin-top: 700rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pemit {
+  width: 250rpx;
+  margin-top: 10px;
+}
+
+

@@ -1,0 +1,107 @@
+<!--凑单提示 -->
+<!--引入toFixed文件  -->
+<wxs module="filter" src="../../utils/toFixed.wxs"></wxs> 
+
+<view style='margin-bottom:150rpx;border-top: 1px solid #EEEEE0;'>
+
+  <view wx:if='{{!empty && totalPrice<baoyouPrice}}' class='coudan'>
+    <text>全场满100元包邮,还差</text>
+    <text class='text-goods-price'>48.20</text>
+    <text>元包邮</text>
+    <text style='float: right;'></text>
+  </view>
+
+  <!--列表  -->
+  <view wx:if='{{!empty}}' class='{{totalPrice<baoyouPrice? "container":""}}'>
+    <!--左滑删除  -->
+    <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{carts}}" wx:key="">
+      <view class="content">
+        <!--list  -->
+        <view class='cart-list'>
+          <!--icon  -->
+          <view class="cart-pro-select">
+            <icon wx:if="{{item.selected}}" type="success" color="#21C0AE" data-index="{{index}}" bindtap="selectList" />
+            <icon wx:else type="circle" data-index="{{index}}" bindtap="selectList" />
+          </view>
+          <!--img  -->
+          <view>
+            <image src='{{item.goods.goodsImg}}' class='cart-img'></image>
+          </view>
+          <!--content  -->
+          <view class='cart-content'>
+            <view>
+              <text class='cart-name'>{{item.goods.goodsName}}</text>
+            </view>
+            <!--价格数量  -->
+            <view class='cart-ope'>
+              <!--价格  -->
+              <view>
+                <text class='text-goods-price'>{{filter.toFix(item.goods.shopPrice)}}</text>
+              </view>
+              <!--数量  -->
+              <view class='unit unit-num'>
+                <view class='unit-num-text'>
+                  <view class='num-jian' data-index='{{index}}' catchtap='minusCount'>-</view>
+                  <view class='input-num'>{{item.num}}</view>
+                  <view class='num-jia' data-index='{{index}}' catchtap='addCount'>+</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class="del" catchtap="del" data-index="{{index}}" data-id="{{item.id}}">删除</view>
+    </view>
+  </view>
+
+  <!--购物车为空  -->
+  <view wx:if='{{empty}}' class='cart-empty'>
+    <image src='../../static/icon/ic_menu_shoping_nor.png' style='height:200rpx;width:200rpx;'></image>
+    <text>购物车空空如也,先去逛逛</text>
+    <!-- <view class='t-b'>
+      <text>去逛逛</text>
+    </view> -->
+  </view>
+
+  <!--推荐商品  -->
+  <view class='recom-view'>
+    <view class='hot-text'>
+      <text>-- 猜你喜欢 --</text>
+    </view>
+    <view class='recom-content'>
+      <block wx:for='{{5}}'>
+        <view class='recom'>
+          <!--img  -->
+          <view class='img-view'>
+            <image src="{{img}}" style='width:70px;height:80px;'></image>
+          </view>
+          <!--商品名称和规格  -->
+          <view style='margin-bottom:10px;'>
+            <text>商品名称和规格商品名称和规格商品格</text>
+          </view>
+          <!--价格和添加按钮  -->
+          <view class='cart-ope'>
+            <text>49.00</text>
+            <image src='/static/icon/add.png' style='width:20px;height:20px;'></image>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+</view>
+
+<!--bottom  -->
+<view wx:if='{{!empty}}' class='cart-bootom'>
+  <icon wx:if="{{selectAll}}" class='all-icon' type="success" color="#21C0AE" bindtap="selectAll" data-status="{{selectAll}}" />
+  <icon wx:else type="circle" class='all-icon' data-status="{{selectAll}}" bindtap="selectAll" />
+  <view class='view-right'>
+    <view class='bootom-price'>
+      <text space='emsp'>合 计:</text>
+      <text class='text-goods-price'> ¥{{filter.toFix(totalPrice)}}\n</text>
+    </view>
+    <view class='btn-pay' bindtap='pay'>
+      <text style='color: white;'>去结算</text>
+    </view>
+  </view>
+</view>

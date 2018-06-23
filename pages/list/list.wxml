@@ -1,0 +1,43 @@
+<!--pages/list/list.wxml-->
+<view style='border-top: 1px solid gainsboro;'>
+  <template name='goodsList'>
+    <!--引入toFixed文件  -->
+    <wxs module="filter" src="../../utils/toFixed.wxs"></wxs>
+
+    <block wx:for='{{goods}}'>
+      <view class='goods' bindtap='bindGoods' data-id='{{item.id}}'>
+        <view class='goods-img'>
+          <image class='image' src='{{item.goodsImg}}'></image>
+        </view>
+
+        <view class='good-des'>
+          <view>
+            <text class='goods-name text-goods-name'>{{item.goodsName}}\n</text>
+            <text class='text-goods-des'>{{item.goodsDesc}}</text>
+          </view>
+          <view>
+            <text class='text-goods-price'>¥{{filter.toFix(item.shopPrice)}}</text>
+            <text class='text-goods-spec' style='margin-left:10px;'>{{item.goodsUnit}}</text>
+          </view>
+        </view>
+
+        <view class='add-icon' catchtap='addCart' data-goods='{{item.id}}'>
+          <image src='/static/icon/add.png' style='width:20px;height:20px;'></image>
+        </view>
+      </view>
+    </block>
+  </template>
+</view>
+
+
+<template name="cart">
+  <view class='cart' bindtap='cart'>
+    <image src='/static/icon/ic_list_shoping.png'></image>
+    <view class='cart-num'>
+      <text style='color:white;'>{{cartNum}}</text>
+    </view>
+  </view>
+</template>
+
+<template is="goodsList" data='{{goods}}' />
+<template is='cart' data='{{cartNum}}' />

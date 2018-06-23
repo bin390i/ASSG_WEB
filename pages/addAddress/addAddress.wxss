@@ -1,0 +1,54 @@
+
+.address-content{
+  background-color: white;
+  border-top: 1rpx solid gainsboro;
+}
+.address-input{
+  display: flex;
+  align-items: center;
+  padding: 20rpx 20rpx;
+  border-bottom: 1rpx solid gainsboro;
+}
+input{
+  margin-left: 20rpx;
+  width: 520rpx;
+}
+switch{
+  position: absolute;
+  right: 0
+}
+
+.addrss-bottom{
+ background-color: #21C0AE;
+ height: 40px;
+ width: 100%;
+ line-height: 40px;
+ text-align: center;
+ position: fixed;
+ bottom: 0;
+ z-index: 500;  
+}
+
+.addrss-bottom text{
+  color: #FFFFFF;
+}
+
+.wx-icon-success {
+color:#21C0AE;
+}
+
+.wx-switch-input{
+  width:82rpx !important;
+  height:40rpx !important;
+  background-color: #21C0AE !important;
+}
+/*白色样式（false的样式）*/
+.wx-switch-input::before{
+  width:80rpx !important;
+  height: 36rpx !important;
+}
+/*绿色样式（true的样式）*/
+.wx-switch-input::after{
+  width: 40rpx !important;
+  height: 36rpx !important;
+}

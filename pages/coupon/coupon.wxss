@@ -1,0 +1,102 @@
+/* pages/coupon/coupon.wxss */
+
+page{
+  background-color: #FFFFFF;
+}
+.demo {
+	width:auto;
+	margin:0 auto;
+}
+
+.stamp {
+	height: 200rpx;
+	margin-bottom: 40rpx;
+	position: relative;
+	overflow: hidden;
+  list-style:none;
+	font-family:"Microsoft YaHei", 'Source Code Pro', Menlo, Consolas, Monaco, monospace;
+}
+.stamp:before {
+	content: '';
+	position: absolute;
+	top:0;
+	bottom:0;
+	left:10px;
+	right:0px;
+	z-index: -1;
+}
+
+.stamp .par {
+	float: left;
+	padding: 20rpx 5rpx 0rpx 35rpx;
+	width: 500rpx;
+	border-right:2px dashed rgba(255, 255, 255, .3);
+	text-align: left;
+  height:100%;
+
+}
+
+
+ .stamp .par .sign {
+	font-size: 12px;
+   color: #FFFFFF;
+}
+
+  .stamp .par  .sign_1{
+  font-size: 30.12rpx; color: #FFFFFF;
+}
+.stamp .copy {
+	display: inline-block;
+	padding:20rpx 20rpx;
+	vertical-align: text-bottom;
+	font-size: 20px;
+	color:rgb(255,255,255);
+	text-align: center;
+	line-height: initial;
+}
+
+.stamp .copy .sign{
+  font-size: 40rpx;
+   color: #FFFFFF;
+}
+
+.stamp01 {
+	background: radial-gradient(rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 5px, #50ADD3 5px);
+	background-size: 15px 16px;
+	background-position: 15px 3px;
+}
+ .stamp01:before {
+	background-color:#50ADD3;
+} 
+
+.stamp i {
+	position: absolute;
+	left: 20%;
+	top: 45px;
+	height: 190px;
+	width: 390px;
+	background-color: rgba(255, 255, 255, .15);
+	transform: rotate(-30deg);
+}
+
+.use{
+  margin-top: 10px;
+  border-radius: 25px;
+  border: 1rpx solid #FFFFFF;
+  background-color: #FFFFFF;
+  z-index: 500;
+  width: 160rpx;
+  position:absolute;
+}
+.use text{
+  color: red;
+  font-size: 12px;
+}
+
+.weui-navbar__slider  {
+  background-color: #21c0ae !important;
+}
+
+.weui-bar__item_on view{
+  color: #21C0AE;
+}

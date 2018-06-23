@@ -1,0 +1,30 @@
+/* pages/article/article.wxss */
+
+.article{
+  background-color: white;
+  border-bottom: 1rpx solid gainsboro;
+  margin-bottom: 20rpx;
+}
+
+.article-content{
+ border-bottom: 1rpx solid gainsboro;
+  padding: 10rpx 10rpx;
+}
+
+.read{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 20rpx;
+
+}
+.read-num{
+  width: 160rpx;
+  text-align: center;
+  padding: 0 30rpx;
+
+}
+.read-num text{
+  font-size: 25rpx;
+}
+

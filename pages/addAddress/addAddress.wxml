@@ -1,0 +1,71 @@
+<view class='address-content' wx:if="{{addressId==-1}}">
+  <view class='address-input'>
+    <text>收货人姓名:</text>
+    <input type='text' bindinput='inputName'></input>
+  </view>
+  <view class='address-input'>
+    <text>手机号码:</text>
+    <input type='number'  bindinput='inputPhone'></input>
+  </view>
+  <view class='address-input'>
+    <text>所在地区:</text>
+    <picker style='margin-left:10px;' mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+    <view class="picker">
+      {{region[0]}}，{{region[1]}}，{{region[2]}}
+    </view>
+  </picker>
+  </view>
+  <view class='address-input'>
+    <text>详细地址:</text>
+     <input type='text' value='{{formatted_addresses}}' bindinput='inputDetail'></input>
+  </view>
+  <view class='address-input'>
+    <text>地址类型:</text>
+     <icon type='{{addressType==1?"success":"circle"}}' size='14'style='margin-left:20px;' bindtap='bindAddressType' data-value='1'></icon>
+     <text space='emsp'> 家庭</text>
+     <icon type='{{addressType==2?"success":"circle"}}' size='14'  style='margin-left:50px;' bindtap='bindAddressType' data-value='2'></icon>
+     <text space='emsp'> 公司</text>
+  </view>
+  <view class='address-input'>
+    <text>设置为默认地址</text>
+    <switch type='switch' checked='true' bindchange='switch'></switch>
+  </view>
+</view>
+
+<view class='address-content' wx:else>
+  <view class='address-input'>
+    <text>收货人姓名:</text>
+    <input type='text' bindinput='inputName' value='{{address.realname}}'></input>
+  </view>
+  <view class='address-input'>
+    <text>手机号码:</text>
+    <input type='number'  bindinput='inputPhone' value='{{address.phonenumber}}'></input>
+  </view>
+  <view class='address-input'>
+    <text>所在地区:</text>
+    <picker style='margin-left:10px;' mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+    <view class="picker">
+      {{region[0]}}，{{region[1]}}，{{region[2]}}
+    </view>
+  </picker>
+  </view>
+  <view class='address-input'>
+    <text>详细地址:</text>
+     <input type='text' value='{{formatted_addresses}}' bindinput='inputDetail' value='{{address.street}}'></input>
+  </view>
+  <view class='address-input'>
+    <text>地址类型:</text>
+     <icon type='{{address.type==1?"success":"circle"}}' size='14'style='margin-left:20px;' bindtap='bindAddressType' data-value='1'></icon>
+     <text space='emsp'> 家庭</text>
+     <icon type='{{address.type==2?"success":"circle"}}' size='14'  style='margin-left:50px;' bindtap='bindAddressType' data-value='2'></icon>
+     <text space='emsp'> 公司</text>
+  </view>
+  <view class='address-input'>
+    <text>设置为默认地址</text>
+    <switch type='switch' checked='{{address.isDefault}}' bindchange='switch'></switch>
+  </view>
+</view>
+
+<view class='addrss-bottom' bindtap='save'>
+ <text>保存地址</text>
+</view>

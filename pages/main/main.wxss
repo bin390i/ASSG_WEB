@@ -1,0 +1,76 @@
+/* pages/main/main.wxss */
+@import "../list/list.wxss";
+
+page {
+  background-color: white;
+}
+.line-limit-length {
+-o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    height: 30px;		  
+    overflow: hidden;
+    white-space: nowrap;
+}
+.scroll-block {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+}
+
+.scroll-item {
+  padding: 0 10px;
+}
+
+.cu_xiao {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+
+.time-view {
+  display: flex;
+}
+
+.channel {
+  display: flex;
+  flex-direction: row;
+  padding: 10rpx 10rpx;
+}
+
+.channel .left-view {
+  height: 300rpx;
+  width: 400rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0rpx 10rpx;
+}
+
+.channel .left-view image {
+  height: 270rpx;
+  width: 370rpx;
+  border-radius: 10rpx;
+}
+
+.channel .right-view {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.channel .right-view view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 150rpx;
+  width: 100%;
+  padding: 0rpx 10rpx;
+}
+
+.channel .right-view image {
+  height: 130rpx;
+  width: 100%;
+  position: relative;
+  border-radius: 10rpx;
+}

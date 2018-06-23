@@ -1,0 +1,119 @@
+<!--pages/main/main.wxml-->
+
+<!-- 滑块  -->
+<swiper indicator-dots="true" autoplay="true" interval="5000" duration="500" circular="true">
+  <block wx:for="{{topic.bannerList}}">
+    <swiper-item bindtap="clickTopic" data-id="{{item.id}}">
+      <image src="{{item.image}}" data-topicSrc='{{item.topicSrc}}' style='width:100%;height:150px' />
+    </swiper-item>
+  </block>
+</swiper>
+
+<!--频道模板  -->
+<template name="channelOne">
+  <view style='padding:0 20rpx;' bindtap="clickTopic" data-id="{{topic.oneWeight.id}}">
+    <image src='{{topic.oneWeight.bigImage}}' style='width:100%;height:200rpx; border-radius: 10rpx;'></image>
+  </view>
+</template>
+
+<template name="channelTwo">
+  <view class='channel'>
+    <view class='left-view' style='width: 50%' bindtap="clickTopic" data-id="{{topic.twoWeight.id}}">
+      <image src='{{topic.oneWeight.mediumImage}}'></image>
+    </view>
+    <view class='left-view' style='width: 50%' bindtap="clickTopic" data-id="{{topic.twoWeight.id}}">
+      <image src='{{topic.twoWeight.mediumImage}}'></image>
+    </view>
+  </view>
+</template>
+
+<template name="channelThread">
+  <view class='channel'>
+    <view class='left-view' bindtap="clickTopic" data-id="{{topic.threadWeight.id}}">
+      <image src='{{topic.oneWeight.mediumImage}}'></image>
+    </view>
+    <view class='right-view'>
+      <view bindtap="clickTopic" data-id="{{topic.threadWeight.id}}">
+        <image src='{{topic.twoWeight.minImage}}'></image>
+      </view>
+      <view bindtap="clickTopic" data-id="{{topic.threadWeight.id}}">
+        <image src='{{topic.threadWeight.minImage}}'></image>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name="channelMore">
+  <view class='channel'>
+    <view class='left-view' bindtap="clickTopic" data-id="{{topic.oneWeight.id}}">
+      <image src='{{topic.oneWeight.mediumImage}}'></image>
+    </view>
+    <view class='right-view'>
+      <view bindtap="clickTopic" data-id="{{topic.twoWeight.id}}">
+        <image src='{{topic.twoWeight.minImage}}'></image>
+      </view>
+      <view bindtap="clickTopic" data-id="{{topic.threadWeight.id}}">
+        <image src='{{topic.threadWeight.minImage}}'></image>
+      </view>
+    </view>
+  </view>
+  <block wx:for="{{topic.fourWeight}}">
+    <view style='padding:0 20rpx;' bindtap="clickTopic" data-id="{{item.id}}">
+      <image src='{{item.bigImage}}' style='width:100%;height:200rpx; border-radius: 10rpx;'></image>
+    </view>
+  </block>
+</template>
+
+
+  <!--引用模板  -->
+  <block wx:if='{{topic.channelLength==1}}'>
+    <template is="channelOne" data="{{topic}}" />
+  </block>
+  <block wx:if='{{topic.channelLength==2}}'>
+    <template is="channelTwo" data="{{topic}}" />
+  </block>
+  <block wx:if='{{topic.channelLength==3}}'>
+    <template is="channelThread" data="{{topic}}" />
+  </block>
+  <block wx:if='{{topic.channelLength>3}}'>
+    <template is="channelMore" data="{{topic}}" />
+  </block>
+
+  <!--每日优选 -->
+
+  <view style='padding:0 10px;'>
+    <import src="../list/list.wxml" />
+    <template is="goodsList" data='{{goods}}' />
+  </view>
+
+
+<!-- 限时促销 
+<view class='margin-top-fu cu_xiao'>
+  <text>限时促销</text>
+  <view class='time-view'>
+    <text>剩余</text>
+    <view style='width:100px;text-align: center'>
+      <text style='color:red'>{{countdown}}</text>
+    </view>
+    <text>活动结束</text>
+  </view>
+</view>
+<scroll-view scroll-x="true">
+  <view class='scroll-block'>
+    <block wx:for="{{goods}}" class='scroll-view-x'>
+      <view class="scroll-item">
+        <image src="{{item.goodsImg}}" style='width:80px;height:80px' />
+        <view>
+          <view style='width:100px;'>
+          <text class='text-goods-name ' >美好时光</text>
+          </view>
+          <view>
+            <text class='text-goods-price'>1.99</text>
+            <text class='text-goods-spec'>/500g</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>
+-->

@@ -1,0 +1,103 @@
+<!--pages/coupon/coupon.wxml-->
+
+
+<view class="page" style='margin-bottom:150rpx;border-top: 1px solid #EEEEE0;'>
+  <view class="page__bd">
+    <view class="weui-tab">
+      <view class="weui-navbar">
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+            <view class="weui-navbar__title">{{item}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+      <view class="weui-tab__panel">
+        <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+          <!--content-start  -->
+          <view class="demo">
+            <block wx:for="{{coupon.enable}}">
+              <view class="stamp stamp01">
+                <view class="par">
+                  <view class='sign_1'>{{item.name}}</view>
+                  <view class='sign'>{{item.range}}</view>
+                  <view class='sign' style='margin-top:10px;'>有效期: {{item.receiveTime}}-{{item.deadTime}}</view>
+                </view>
+                <view class="copy">
+                  <view>
+                    <text class='sign'>¥</text>
+                    <text class='sign'>{{item.face}}</text>
+                  </view>
+                  <view>
+                    <text style='color: #FFFFFF;'>{{item.subname}}</text>
+                  </view>
+                  <view class='use'>
+                    <text>立即使用</text>
+                  </view>
+                </view>
+                <i></i>
+              </view>
+            </block>
+          </view>
+          <!--content-end  -->
+        </view>
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+          <!--content-start  -->
+          <view class="demo">
+            <block wx:for="{{coupon.used}}">
+              <view class="stamp stamp01">
+                <view class="par">
+                  <view class='sign_1'>{{item.name}}</view>
+                  <view class='sign'>{{item.range}}</view>
+                  <view class='sign' style='margin-top:10px;'>有效期: {{item.receiveTime}}-{{item.deadTime}}</view>
+                </view>
+                <view class="copy">
+                  <view>
+                    <text class='sign'>¥</text>
+                    <text class='sign'>{{item.face}}</text>
+                  </view>
+                  <view>
+                    <text style='color: #FFFFFF;'>{{item.subname}}</text>
+                  </view>
+                  <view class='use'>
+                    <text>立即使用</text>
+                  </view>
+                </view>
+                <i></i>
+              </view>
+            </block>
+          </view>
+          <!--content-end  -->
+        </view>
+        <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+          <!--content-start  -->
+          <view class="demo">
+            <block wx:for="{{coupon.overdue}}">
+              <view class="stamp stamp01">
+                <view class="par">
+                  <view class='sign_1'>{{item.name}}</view>
+                  <view class='sign'>{{item.range}}</view>
+                  <view class='sign' style='margin-top:10px;'>有效期: {{item.receiveTime}}-{{item.deadTime}}</view>
+                </view>
+                <view class="copy">
+                  <view>
+                    <text class='sign'>¥</text>
+                    <text class='sign'>{{item.face}}</text>
+                  </view>
+                  <view>
+                    <text style='color: #FFFFFF;'>{{item.subname}}</text>
+                  </view>
+                  <view class='use'>
+                    <text>立即使用</text>
+                  </view>
+                </view>
+                <i></i>
+              </view>
+            </block>
+          </view>
+          <!--content-end  -->
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

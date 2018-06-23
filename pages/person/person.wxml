@@ -1,0 +1,66 @@
+<!--个人中心-->
+<view class='page'>
+<view class="container">
+  <view class="userinfo">
+    <image src="{{userInfo.avatarUrl}}" class="userinfo-avatar"></image>
+    <text>{{userInfo.nickName}}</text>
+  </view>
+
+  <view class='score'>
+    <view class='score-view '>
+      <text style='font-size: 20px;color:#4876FF;'>0</text>
+      <text style='color:#4876FF;'>分\n</text>
+      <text>我的积分</text>
+    </view>
+    <view class='score-view border_left'>
+      <text style='font-size: 20px;color:red;'>{{balance}}</text>
+      <text style='color:red;'>元\n</text>
+      <text>我的余额</text>
+    </view>
+  </view>
+</view>
+
+
+  <view class="weui-cells-1 weui-cells_after-title">
+    <navigator url="" class="weui-cell weui-cell_access" hover-class="none">
+      <view class="weui-cell__hd">
+        <image src="../../static/icon/vip.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </view>
+      <view class="weui-cell__bd">会员卡</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="" class="weui-cell weui-cell_access" hover-class="none">
+      <view class="weui-cell__hd">
+        <image src="../../static/icon/recharge.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </view>
+      <view class="weui-cell__bd">会员充值</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+  </view>
+
+
+
+  <view class="weui-cells-1 weui-cells_after-title">
+    <navigator url="../order/order" class="weui-cell weui-cell_access" hover-class="none">
+      <view class="weui-cell__hd">
+        <image src="../../static/icon/order.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </view>
+      <view class="weui-cell__bd">订单中心</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="../coupon/coupon" class="weui-cell weui-cell_access" hover-class="none">
+      <view class="weui-cell__hd">
+        <image src="../../static/icon/conpon.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </view>
+      <view class="weui-cell__bd">我的优惠券</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+    <navigator url="../address/address" class="weui-cell weui-cell_access" hover-class="none">
+      <view class="weui-cell__hd">
+        <image src="../../static/icon/address.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+      </view>
+      <view class="weui-cell__bd">地址管理</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+    </navigator>
+  </view>
+</view>

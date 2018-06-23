@@ -1,0 +1,143 @@
+<!--pages/confirm.wxml -- 确认订单页面-->
+<!--引入toFixed文件  -->
+<wxs module="filter" src="../../utils/toFixed.wxs"></wxs> 
+
+<view style='margin-bottom:150rpx;border-top: 1px solid #EEEEE0;'>
+  <!--无收获地址  -->
+  <view wx:if='{{!isAddress}}' bindtap='addAddress' style='background-color: #FFFCDD;'>
+    <navigator  class="weui-cell weui-cell_access" hover-class="none">
+      <view class="weui-cell__bd" >请填写收货地址</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access">去添加</view>
+    </navigator>
+  </view>
+  <!--有收获地址  -->
+  <view wx:if='{{isAddress}}' bindtap='chooseAddress' class='address'>
+    <view class='address'>
+      <view>
+        <text style='color:black'>{{address.realname}}</text>
+        <text space='emsp' style='color:black'> {{address.phonenumber}}</text>
+      </view>
+      <view class='detail'>
+        <text class="goods-name">{{address.province}},{{address.city}},{{address.district}},{{address.street}}</text>
+      </view>
+    </view>
+  </view>
+
+  <view class='order-item'>
+  <view>
+    <text>共</text>
+    <text> {{carts.length}}</text>
+    <text> 件商品</text>
+  </view>
+  <block wx:for='{{carts}}'>
+    <view class='item'>
+      <view>
+        <image src="{{item.goods.goodsImg}}"></image>
+      </view>
+      <view class='item-right'>
+        <view class='item-right-top'>
+          <text class='goods-name'>{{item.goods.goodsName}}\n</text>
+          <text space='emsp'>规格: {{item.goods.goodsUnit}}</text>
+        </view>
+        <view class='item-right-bottom'>
+          <text >￥{{filter.toFix(item.goods.shopPrice)}}</text>
+          <text >x{{item.num}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+
+  <view style='  margin-top: 10px;'>
+    <view class='choose-express'>
+      <text>选择收货方式：</text>
+      <picker bindchange="bindPickerChange_delivery" value="{{index_delivery}}" range="{{delivery}}">
+        <view class="picker">
+          <text >{{delivery[index_delivery]}}</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class='choose-express'>
+      <text>选择收货日期:</text>
+      <picker mode="date" value="{{date}}" start="{{date}}" bindchange="bindDateChange">
+        <view class="picker" >
+          {{date}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <view class='choose-express'>
+    <view>
+      <text>选择收货时间:</text>
+    </view>
+    <view class='pickTimeView'>
+      <picker mode="time" value="{{startTime}}" start="09:01" end="{{endTime}}" bindchange="bindStartTimeChange">
+        <view class="picker" >
+          {{startTime}}
+        </view>
+      </picker>
+      <text style='margin-left:10px;margin-right:5px;'>~</text>
+      <picker mode="time" value="{{endTime}}" start="{{startTime}}" end="21:01" bindchange="bindEndTimeChange">
+        <view class="picker" >
+          {{endTime}}
+        </view>
+      </picker>
+    </view>
+  </view>
+
+  <!--备注  -->
+  <view class='remark'>
+    <input placeholder='如有特殊要求,请在此留言' name="remark" bindinput='input_remark'></input>
+  </view>
+
+
+  <!--优惠券  -->
+<view class="weui-cells-1 weui-cells_after-title">
+    <navigator url="../choosecp/choosecp?amount={{totalPrice}}" class="weui-cell weui-cell_access" hover-class="none">
+      <view class="weui-cell__bd">优惠券</view>
+      <view class="weui-cell__ft weui-cell__ft_in-access" style='{{color}}'>{{text}}</view>
+    </navigator>
+  </view>
+
+  <!--商品金额  -->
+  <view style='margin-top:10px;background-color: white;'>
+    <view style='padding:10px 10px;'>
+      <view class='order-price'>
+        <text>商品合计</text>
+        <text>¥{{filter.toFix(totalPrice)}}</text>
+      </view>
+      <!-- <view class='order-price ot'>
+        <text>运费金额</text>
+        <text>¥35.00</text>
+      </view> -->
+      <view class='order-price ot'>
+        <text>优惠金额</text>
+        <text>¥{{filter.toFix(face)}}</text>
+      </view>
+    </view>
+    <view class='order-price' style='border-top: 1rpx solid gainsboro;padding:10px 10px;'>
+      <text>应付金额</text>
+      <text style='color:red;'>¥{{filter.toFix(totalPrice-face)}}</text>
+    </view>
+  </view>
+
+</view>
+
+  <!--footer-->
+  <view class="total">
+    <view class='leftView'>
+      <text>支付金额:</text>
+      <text class='text-goods-price'> ¥{{filter.toFix(totalPrice-face)}}</text>
+    </view>
+    <view class='rightView' catchtap='btnPayView'>
+      <text style='color:white;'>结算</text>
+    </view>
+  </view>
+
+  <!--弹出支付方式选择页面 
+<view class="commodity_screen" bindtap="hideModal" wx:if="{{showModalStatus}}"></view>
+<view animation="{{animationData}}" wx:if="{{showModalStatus}}" class="catalog_area" >
+ 
+</view>  -->

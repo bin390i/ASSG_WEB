@@ -1,0 +1,145 @@
+<!--pages/order/order.wxml 订单页面-->
+<wxs module="filter" src="../../utils/toFixed.wxs"></wxs> 
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-tab">
+      <view class="weui-navbar" style='background:white;'>
+        <block wx:for="{{tabs}}" wx:key="*this">
+          <view id="{{item.value}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+            <view class="weui-navbar__title">{{item.name}}</view>
+          </view>
+        </block>
+        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+      </view>
+      <view class="weui-tab__panel">
+        <!--全部订单  -->
+        <view hidden="{{activeIndex != 0}}">
+          <block wx:for="{{orderList}}" wx:for-item="order">
+            <view style='background:white;margin-top:10px;' bindtap='watchOrderDetail' id='{{order.id}}'>
+              <view class='row'>
+                <text>订单号:{{order.orderNo}}</text>
+                <text style='color: #ec5151;' wx:if="{{order.orderStatus==1}}">等待付款</text>
+                <text style='color: #ec5151;' wx:if="{{order.orderStatus==2}}" style='color:red'>已支付,未收货</text>
+                <text style='color: #ec5151;' wx:if="{{order.orderStatus==4}}" style='color:red'>已完成,未评价</text>
+                <text style='color: #ec5151;' wx:if="{{order.orderStatus==5}}" style='color:red'>已评价完成</text>
+              </view>
+              <scroll-view scroll-x="true">
+                <view class='scroll-block'>
+                  <block wx:for="{{order.orderItems}}" wx:for-item="item" class='scroll-view-x'>
+                    <view class="scroll-item">
+                      <image src="{{item.goodsImg}}" />
+                    </view>
+                  </block>
+                </view>
+              </scroll-view>
+              <view class='row-receive'>
+                <text space='emsp '>共{{order.itemCount}}件商品 需付款:</text>
+                <text style='font-size:18px;'>¥{{filter.toFix(order.orderAmount)}}</text>
+              </view>
+              <view class='row-receive-1'>
+                <text wx:if="{{order.orderStatus==1}}" style='color:red'>去支付</text>
+                <text wx:if="{{order.orderStatus==2}}" style='color:red'>待收货</text>
+                <text wx:if="{{order.orderStatus==4}}" style='color:red' data-orderId="{{order.id}}" catchtap='btn_appraise'>去评价</text>
+                 <text wx:if="{{order.orderStatus==5}}" style='color:red' data-orderId="{{order.id}}" catchtap='btn_appraise'>已评价</text>
+              </view>
+            </view>
+          </block>
+        </view>
+
+
+
+
+        <!--代付款  -->
+        <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+          <block wx:for="{{orderList}}" wx:for-item="order">
+            <view style='background:white;margin-top:10px;' bindtap='watchOrderDetail' id='{{order.id}}'>
+              <view class='row'>
+                <text>订单号:{{order.orderNo}}</text>
+                <text style='color: #ec5151;'>等待付款</text>
+              </view>
+              <scroll-view scroll-x="true">
+                <view class='scroll-block'>
+                  <block wx:for="{{order.orderItems}}" wx:for-item="item" class='scroll-view-x'>
+                    <view class="scroll-item">
+                      <image src="{{item.goodsImg}}" />
+                    </view>
+                  </block>
+                </view>
+              </scroll-view>
+              <view class='row-receive'>
+                <text space='emsp '>共{{order.itemCount}}件商品 需付款:</text>
+                <text style='font-size:18px;'>¥{{filter.toFix(order.orderAmount)}}</text>
+              </view>
+              <view class='row-receive-1'>
+                <text style='color:red'>去支付</text>
+              </view>
+            </view>
+          </block>
+        </view>
+
+        <!--待收货  -->
+        <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
+          <block wx:for="{{orderList}}" wx:for-item="order">
+            <view style='background:white;margin-top:10px;' bindtap='watchOrderDetail' id='{{order.id}}'>
+              <view class='row'>
+                <text>订单号:{{order.orderNo}}</text>
+                <text style='color: #ec5151;'>已支付,未收货</text>
+              </view>
+              <scroll-view scroll-x="true">
+                <view class='scroll-block'>
+                  <block wx:for="{{order.orderItems}}" wx:for-item="item" class='scroll-view-x'>
+                    <view class="scroll-item">
+                      <image src="{{item.goodsImg}}" />
+                    </view>
+                  </block>
+                </view>
+              </scroll-view>
+              <view class='row-receive'>
+                <text space='emsp '>共{{order.itemCount}}件商品 需付款:</text>
+                <text style='font-size:18px;'>¥{{filter.toFix(order.orderAmount)}}</text>
+              </view>
+              <view class='row-receive-1'>
+                <text style='color:red'>待收货</text>
+              </view>
+            </view>
+          </block>
+        </view>
+
+        <!--待评价  -->
+        <view class="weui-tab__content" hidden="{{activeIndex != 4}}">
+          <block wx:for="{{orderList}}" wx:for-item="order">
+            <view style='background:white;margin-top:10px;' bindtap='watchOrderDetail' id='{{order.id}}'>
+              <view class='row'>
+                <text>订单号:{{order.orderNo}}</text>
+                <text style='color: #ec5151;'>已完成,未评价</text>
+              </view>
+             <scroll-view scroll-x="true">
+                <view class='scroll-block'>
+                  <block wx:for="{{order.orderItems}}" wx:for-item="item" class='scroll-view-x'>
+                    <view class="scroll-item">
+                      <image src="{{item.goodsImg}}" />
+                    </view>
+                  </block>
+                </view>
+              </scroll-view>
+              <view class='row-receive'>
+                <text space='emsp '>共{{order.itemCount}}件商品 需付款:</text>
+                <text style='font-size:18px;'>¥{{filter.toFix(order.orderAmount)}}</text>
+              </view>
+              <view class='row-receive-1'>
+                <text style='color:red'>待评价</text>
+              </view>
+            </view>
+          </block>
+        </view>
+
+      <!--您还没有相关订单  -->
+      <view wx:if="{{emptyOrder}}" class='no-order'>
+       <image src='../../static/icon/order_no.png'></image>
+       <text style='font-size:20px; color: #bfbfbf'>\n您还没有相关订单</text>
+      </view>
+
+      </view>
+    </view>
+  </view>
+</view>

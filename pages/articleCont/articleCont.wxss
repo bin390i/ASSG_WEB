@@ -1,0 +1,9 @@
+/* pages/articleCont/articleCont.wxss */
+@import "../../wxParse/wxParse.wxss";
+.container{
+ background-color:  white;
+}
+
+image{
+  width: 100%;
+}

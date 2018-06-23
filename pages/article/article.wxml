@@ -1,0 +1,21 @@
+<!--pages/article/article.wxml-->
+<block wx:for='{{articles}}'>
+<view class='article' bindtap='watchArticleCont' data-id='{{item.id}}'>
+ <image src='{{item.image}}'style="width:100%"></image>
+ <view class='article-content'>
+ <view>
+   <text class='.text-goods-name'>{{item.title}}</text>
+ </view>
+ <view style='margin-top:10rpx;'> 
+  <text  class='text-goods-des'>{{item.resume}}</text>
+ </view>
+ </view>
+ <view class='read'>
+   <view class='read-num'>
+    <text>{{item.pv}}\n</text>
+    <text space='emsp'>阅读</text>
+   </view>
+   <view>2018年03月24日</view>
+ </view>
+</view>
+</block>

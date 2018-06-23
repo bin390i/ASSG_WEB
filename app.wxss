@@ -1,0 +1,66 @@
+/**app.wxss**/
+
+@import "weui.wxss";
+.container_1 {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+  font-family:PingFangSC-Light,helvetica,'Heiti SC';
+} 
+
+page{
+  background-color: #F0F0F0;
+}
+
+.bottom{
+  border-bottom: 1px solid #EEEEE0;
+}
+
+.margin-top-fu{
+  margin-top: 15px;
+}
+
+.text-goods-name{
+  font-size: 14px;
+}
+
+.text-goods-des{
+  font-size: 12px;
+  color:  darkgray
+}
+
+.text-goods-price{
+ font-size: 12px;
+ color: red;
+}
+
+.text-goods-spec{
+  font-size: 10px;
+  color:  darkgray
+}
+
+view,image,text,navigator{
+  box-sizing: border-box;
+  padding:0;
+  margin:0;
+
+}
+
+view,text{
+  font-family: PingFangSC-Light,helvetica,'Heiti SC';
+  font-size: 29rpx;
+  color: #333;
+}
+
+.page-white{
+  background-color:  white;
+  border-top: 1rpx solid #ddd;
+}
+
+.page{
+  margin-bottom: 100px;
+}

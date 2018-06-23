@@ -1,0 +1,117 @@
+/* pages/confirm.wxss -- 确认订单页面*/
+@import "/pages/orderDetail/orderDetail.wxss";
+
+.address {
+display: flex;
+flex-direction:column;
+background-color:white;
+padding:5px 10px;
+margin-top: 0;
+}
+
+.weui-cells-1{
+position:relative;
+margin-top:1.17647059em;
+background-color:#fff;
+line-height:1.41176471;
+font-size:17px;
+}
+
+.access_in {
+  float: right;
+  margin-right: 40px;
+}
+
+.choose-express {
+  display: flex;
+  justify-content: space-between;
+  background: white;
+  color: #555;
+  font-size: 14px;
+  padding: 10px;
+  border-top: 1rpx solid #ddd;
+}
+
+.pickTimeView{
+  display: flex;
+  justify-content: space-between;
+}
+
+.picker {
+  margin-left: 30rpx;
+}
+
+.remark {
+  display: flex;
+  border-top: 1rpx solid #ddd;
+  background: white;
+  padding: 30rpx 30rpx;
+}
+
+input {
+  width: 100%;
+}
+
+.coupon {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px;
+  background: white;
+  margin-top: 10px;
+}
+
+.total {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 500;
+  height: 40px;
+  line-height: 40px;
+  background-color: white;
+  border-top: 1rpx solid #f5f4f9;
+}
+
+.total .leftView {
+  position: absolute;
+  height: 40px;
+  font: left;
+  margin-left: 10px;
+}
+
+.total .rightView{
+  position: absolute;
+  height: 40px;
+  width: 300rpx;
+  background-color: #21C0AE;
+  right: 0;
+  text-align: center;
+}
+
+.commodity_screen{
+  background-color:rgba(0,0,0,0.5);
+  width: 100%;
+  height: 100%;
+  opacity:0.5;
+  position: fixed;
+  z-index: 666;
+  bottom:0;  
+}
+.catalog_area{
+  background-color: #ffffff;
+  min-height: 600rpx;
+  max-height: 600rpx;
+  width: 100%;
+  padding:20rpx;
+  position: fixed;
+  z-index: 888;
+  bottom:0;
+}
+
+
+.goods-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

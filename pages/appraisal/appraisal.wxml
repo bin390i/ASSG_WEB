@@ -1,0 +1,52 @@
+<!--pages/appraisal/appraisal.wxml-->
+<view class='page'>
+  <view class='item'>
+    <view>
+      <image src="{{item.goodsImg}}"></image>
+    </view>
+    <view class='item-right'>
+      <view class='item-right-top'>
+        <text>{{item.goodsName}}</text>
+      </view>
+      <view class='item-right-bottom'>
+        <text style='color:red;'>¥{{item.goodsPrice}}</text>
+        <text></text>
+      </view>
+    </view>
+  </view>
+
+  <view class='star-cont'>
+    <view class='star-view'>
+      <text style='margin-right:20px;'>口感</text>
+      <block wx:for='{{mouthFell}}'>
+        <image src='{{item.src}}' style='width:20px;height:20px;margin-right:10px;' data-index='{{index}}' catchtap='btn_mouthFell'></image>
+      </block>
+    </view>
+    <view class='star-view' style='margin-top:10px;'>
+      <text style='margin-right:20px;'>色泽</text>
+      <block wx:for='{{colorFell}}'>
+        <image src='{{item.src}}' style='width:20px;height:20px;margin-right:10px;' data-index='{{index}}' catchtap='btn_colorFell'></image>
+      </block>
+    </view>
+  </view>
+
+  <view class='textarea-view '>
+    <textarea maxlength='100' bindinput="bindinput"></textarea>
+  </view>
+
+  <view class='capture-view'>
+    <block wx:for="{{tmpUploadImg}}">
+      <view class='upload-img '>
+        <image src='{{item}}' style='width:80px;height:70px;margin-top:5px;' data-index="{{index}}" catchtap='previewImage'></image>
+        <icon type="clear" size="20" data-index="{{index}}" catchtap='delImg' />
+      </view>
+    </block>
+    <view class='capture-img' catchtap='chooseImg'>
+      <image src='../../static/icon/capture.png ' style='width:40px;height:30px;'></image>
+    </view>
+  </view>
+</view>
+
+<view class='btn-bottom' bindtap='saveAppraises'>
+  <text>发表评论</text>
+</view>

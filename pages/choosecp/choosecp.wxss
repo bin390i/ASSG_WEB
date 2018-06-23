@@ -1,0 +1,2 @@
+/* pages/choosecp/choosecp.wxss */
+@import "../coupon/coupon.wxss";

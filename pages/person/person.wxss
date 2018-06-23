@@ -1,0 +1,49 @@
+/* pages/personal/personal.wxss */
+
+.container {
+  background: white;
+  border-top: 1rpx solid #ddd;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 150px;
+  background: url(https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTIoxrTKgdTmBDCicEbVxjckcPwu8QPT8I3fIR00qrl2xpia1phUic24C7XOv5oZUdPtmfvE4vjEznhcg/0);
+}
+
+.userinfo-avatar {
+  width: 180rpx;
+  height: 180rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.score{
+  display: flex;
+  padding: 10px 0;
+}
+
+.score-view{
+  height: 50px;
+  width: 50%;
+  text-align: center;
+}
+
+.border_left{
+  border-left: 1rpx solid #ddd;
+}
+
+.weui-cells-1{
+position:relative;
+margin-top:1.17647059em;
+background-color:#fff;
+line-height:1.41176471;
+font-size:17px;
+}
+
+.page{
+  margin-bottom: 1.17647059em;
+}

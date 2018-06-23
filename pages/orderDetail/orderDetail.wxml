@@ -1,0 +1,107 @@
+<!--pages/orderDetail/orderDetail.wxml-->
+<wxs module="filter" src="../../utils/toFixed.wxs"></wxs> 
+<view style='margin-bottom:150rpx'>
+  <view class='order-tatle'>
+    <view class=''>
+      <text>订单编号:</text>
+      <text space='emsp'> {{order.orderNo}}</text>
+    </view>
+    <view class='ot'>
+      <text>下单时间:</text>
+      <text space='emsp'> {{orderTime}}</text>
+    </view>
+    <view class='ot'>
+      <text>实付金额:</text>
+      <text space='emsp' style='color:red;'> ¥{{filter.toFix(order.payAmount)}}</text>
+    </view>
+    <view class='ot'>
+      <text>订单状态:</text>
+      <text space='emsp' wx:if="{{order.orderStatus==1}}" style='color:red'> 未支付</text>
+      <text space='emsp' wx:if="{{order.orderStatus==2}}" style='color:red'> 已支付,未收货</text>
+      <text space='emsp' wx:if="{{order.orderStatus==4}}" style='color:red'> 已完成,未评价</text>
+    </view>
+    <view class='ot'>
+      <text>配送时间:</text>
+      <text space='emsp'> {{receiveTime}}</text>
+    </view>
+  </view>
+
+  <view class='address'>
+    <view>
+      <text style='color:black'>张斌</text>
+      <text space='emsp' style='color:black'> 18612721187</text>
+    </view>
+    <view class='detail'>
+      <text>{{order.address}}</text>
+    </view>
+  </view>
+
+  <view class='order-item'>
+    <view>
+      <text>共</text>
+      <text style='color:red;'>{{order.itemCount}}</text>
+      <text>件商品</text>
+    </view>
+    <block wx:for='{{order.orderItems}}'>
+      <view class='item'>
+        <view>
+          <image src="{{item.goodsImg}}"></image>
+        </view>
+        <view class='item-right'>
+          <view class='item-right-top'>
+            <text>{{item.goodsName}}\n</text>
+            <text>{{item.goodsUnit}}</text>
+          </view>
+          <view class='item-right-bottom'>
+            <text style='color:red;'>¥ {{filter.toFix(item.goodsPrice)}}</text>
+            <text style='color:red;'>x {{item.goodsNum}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view style='margin-top:10px;background-color: white;'>
+    <view style='padding:10px 10px;'>
+      <view class='order-price'>
+        <text>商品合计</text>
+        <text>¥{{filter.toFix(order.orderAmount)}}</text>
+      </view>
+      <view class='order-price ot'>
+        <text>运费金额</text>
+        <text>¥{{filter.toFix(order.logisticsFee)}}</text>
+      </view>
+      <view class='order-price ot'>
+        <text>优惠金额</text>
+        <text>¥35.00</text>
+      </view>
+    </view>
+    <view class='order-price' style='border-top: 1rpx solid gainsboro;padding:10px 10px;'>
+      <text>实付金额</text>
+      <text style='color:red;'>¥{{filter.toFix(order.payAmount)}}</text>
+    </view>
+  </view>
+
+  <view class='order-price' style='padding:10px 10px;margin-top:10px;background-color: white;'>
+    <text>支付方式</text>
+    <text wx:if="{{order.payType==3}}">微信支付</text>
+    <text wx:if="{{order.payType==4}}">钱包支付</text>
+  </view>
+</view>
+
+<!--支付订单  -->
+<view class='btn-bottom' wx:if="{{order.orderStatus==1}}">
+  <view class='btn-cancel' catchtap='orderCancel'>
+    <text style='color:#5B5B5B;'>取消订单</text>
+  </view>
+  <view class='btn-pay' catchtap='orderPay'>
+    <text style='color: red;'>支付订单</text>
+  </view>
+</view>
+
+<!--评价晒单  -->
+<view class='btn-bottom' wx:if="{{order.orderStatus==4}}">
+  <view class='btn-pay' catchtap='orderAppraisal'>
+    <text style='color: red;'>评价晒单</text>
+  </view>
+</view>

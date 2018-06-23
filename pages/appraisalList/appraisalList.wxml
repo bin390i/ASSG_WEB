@@ -1,0 +1,24 @@
+<view class='order-item' style='margin-top:0'>
+    <view>
+      <text>共</text>
+      <text style='color:red;'>{{order.itemCount}}</text>
+      <text>件商品</text>
+    </view>
+    <block wx:for='{{order.orderItems}}'>
+      <view class='item'>
+        <view>
+          <image src="{{item.goodsImg}}"></image>
+        </view>
+        <view class='item-right'>
+          <view class='item-right-top'>
+            <text>{{item.goodsName}}</text>
+          </view>
+          <view class='item-right-bottom'>
+            <text></text>
+            <text wx:if='{{item.appraisesId==null}}' style='color:red;' data-goodsId='{{item.goodsId}}' catchtap='btn_appraisal'>评价晒单</text>
+            <text wx:if='{{item.appraisesId!=null}}' style='color:#BB5500;'>已评价</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>

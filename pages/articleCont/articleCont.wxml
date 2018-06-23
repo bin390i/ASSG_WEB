@@ -1,0 +1,8 @@
+<!--pages/articleCont/articleCont.wxml-->
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="container" style='border-top: 1px solid gainsboro;'>
+  <!-- 这一块是富文本 显示的内容区 -->
+  <view style='padding:0 20rpx;'>
+   <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+  </view>
+</view>
