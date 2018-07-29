@@ -209,9 +209,9 @@ Page({
       }
       util.request(api.creatOrder, data).then(function (resolve) {
         if (resolve.code == constant.QUERY_OK) {
-          var orderId = resolve.data;
+          var orderNo = resolve.data;
           wx.redirectTo({
-            url: '../pay/pay?orderId=' + orderId + '&payAmount=' + _this.data.realPayAmount,
+            url: '../pay/pay?orderNo=' + orderNo + '&payAmount=' + _this.data.realPayAmount,
           })
         } else {
           util.showErrorToast("订单生成异常");

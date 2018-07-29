@@ -11,14 +11,14 @@ Page({
     payAmount: 0,//待支付
     wallets_password_flag: false,//密码输入遮罩,
     wallets_password: [], //当前输入的密码
-    orderId: '',
+    orderNo: '',
   },
   /**
    * 页面加载事件
    */
   onLoad: function (option) {
     var _this = this;
-    _this.data.orderId = option.orderId
+    _this.data.orderNo = option.orderNo
     _this.data.payAmount = option.payAmount
 
     //加载账户余额
@@ -147,7 +147,7 @@ function wallet_pay(_this, password) {
   var data = {
     session: util.getRession(),
     password: password,
-    orderId: _this.data.orderId,
+    orderNo: _this.data.orderNo,
     amount: _this.data.payAmount
   };
   util.request(api.payForAccount, data).then(function (resolve) {

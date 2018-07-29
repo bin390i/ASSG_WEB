@@ -1,13 +1,14 @@
 const ApiUrl="http://192.168.1.104:8080/";
+//const ApiUrl="https://www.aifruit.club:443/";
 module.exports={
   baseUrl:ApiUrl,
   login: ApiUrl + 'loginByWeixin.do',//用户登录相关
-  classify: ApiUrl + 'web/classify/classify.do', //分类接口
+  classify: ApiUrl + 'wx/mgr_web/classify.do', //分类接口
   goodsList: ApiUrl + 'selectGoodsByClassify.do', //获取当前分类下的所有商品
   saveAddress : ApiUrl + 'saveAddress.do', //保存地址
   addressList: ApiUrl + 'addressList.do', //查询地址列表
   getAddress: ApiUrl + 'getAddress.do', //获取地址详情
-  getGoodsInfo: ApiUrl + 'getGoodsInfo.do', //获取商品信息
+  getGoodsInfo: ApiUrl + 'wx/mgr_web/getGoodsInfo.do', //获取商品信息
   addCart : ApiUrl + 'addCart.do', //添加或更新购物车
   cartList: ApiUrl + 'cartList.do', //获取用户的购物车列表
   deleteCart: ApiUrl + 'deleteCart.do', //购物车删除
@@ -29,4 +30,5 @@ module.exports={
   selectGoodsByTopic: ApiUrl + 'selectGoodsByTopic.do', //获取关联商品
   saveSystemInfo: ApiUrl +'saveSystemInfo.do', //保存用户系统信息
   sendMsg: ApiUrl + "sendMsg.do", //用户下单后发送模板消息给商户
+  queryShop: ApiUrl + "wx/web/queryShop.do",
 };

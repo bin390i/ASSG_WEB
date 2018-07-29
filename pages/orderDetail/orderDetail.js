@@ -49,7 +49,7 @@ Page({
  */
 orderPay:function(e){
   wx.navigateTo({
-    url: '../pay/pay?orderId=' + this.data.order.id+'&payAmount='+this.data.order.payAmount,
+    url: '../pay/pay?orderNo=' + this.data.order.orderNo+'&payAmount='+this.data.order.payAmount,
   })
 },
 /**

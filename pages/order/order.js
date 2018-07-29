@@ -48,10 +48,11 @@ Page({
    */
   tabClick: function (e) {
     var _this = this
-    var status = e.currentTarget.id;
+    var status = new Array();
+    status.push(e.currentTarget.id)
     var data = {
       session: util.getRession(),
-      status: status
+      status: JSON.stringify(status)
     }
     util.request(api.getOrderList, data).then(function (resolve) {
       var resData = resolve.data;

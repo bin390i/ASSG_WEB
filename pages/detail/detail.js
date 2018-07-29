@@ -17,7 +17,7 @@ Page({
     _this.data.goodsId = options.goodsId;
   },
   onReady: function () {
-    wx.hideLoading()
+   
   },
   onShow: function () {
     wx.showLoading({
@@ -28,7 +28,6 @@ Page({
       goodsId: _this.data.goodsId
     };
     util.request(api.getGoodsInfo, data).then(function (resolve) {
-      console.log(resolve.code)
       if (resolve.code == constant.QUERY_OK) {
         _this.setData({
           url: api.baseUrl,
@@ -54,6 +53,8 @@ Page({
           })
         }
       })
+    }).then(function(){
+      wx.hideLoading();
     });
   },
 

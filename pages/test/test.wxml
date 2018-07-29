@@ -1,0 +1,23 @@
+<!--pages/test/test.wxml-->
+
+<view><text>纬度:{{latitude}}</text></view>
+<view><text>经度:{{longitude}}</text></view>
+<view><text>速度:{{speed}}</text></view>
+<view><text>精确度:{{accuracy}}</text></view>
+
+<button bindtap='refresh'>刷新</button>
+<view class="section">
+  <view class="section__title">选择距离</view>
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      当前选择：{{array[index]}}
+    </view>
+  </picker>
+</view>
+<block wx:for='{{shopList}}'>
+<view>
+ <text>{{item.name}}</text>--------<text>{{item.currentDistance}}</text>
+</view>
+</block>
+
+

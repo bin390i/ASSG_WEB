@@ -1,0 +1,73 @@
+<!--pages/shopList/shopList.wxml-->
+
+<view>
+  <!--搜索  -->
+  <view class="page__bd">
+    <view class="weui-search-bar">
+      <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+          <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+          <input type="text" confirm-type="search" class="weui-search-bar__input" placeholder="搜索" value="{{inputVal}}" focus="{{inputShowed}}" bindinput="inputTyping" bindconfirm="inputConfirm" />
+          <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="14"></icon>
+          </view>
+        </view>
+        <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+          <icon class="weui-icon-search" type="search" size="14"></icon>
+          <view class="weui-search-bar__text">搜索</view>
+        </label>
+      </view>
+      <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+    </view>
+    <!-- <view class="weui-cells searchbar-result" wx:if="{{inputVal.length > 0}}">
+      <navigator url="" class="weui-cell" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">
+          <view>实时搜索文本</view>
+        </view>
+      </navigator>
+    </view> -->
+  </view>
+  <!--排序-->
+  <view class='sort-view'>
+    <view class='sort-view-1'>
+      <image src="../../static/icon/address.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+      <text >{{currentAddress}}</text>
+    </view>
+    <view class='sort-view-2'>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">
+          {{array[index]}}
+        </view>
+      </picker>
+    </view>
+  </view>
+  <!--店铺列表  -->
+  <view style="margin-top:5px;">
+    <scroll-view scroll-y="true" lower-threshold='1' style='height:{{height-90}}px;' bindscrolltolower="searchScrollLower">
+      <block wx:for='{{shopList}}' wx:key='*this'>
+        <view class='shop-list' data-shopNo='{{item.shopNo}}' bindtap='goToShop'>
+          <view>
+            <image src='/image/img_shop.png' style='width: 150rpx;height: 150rpx;'></image>
+          </view>
+          <view class='shop-info'>
+            <view class='title'>
+              <view class='title-name-view'>
+                <text class='text-goods-name'>{{item.name}}</text>
+              </view>
+              <view style=''>
+                <text class='text-goods-des'>{{item.currentDistance}}km</text>
+              </view>
+            </view>
+            <view>
+              <text class='text-goods-des'>满{{item.lowprice}}元起送</text>
+            </view>
+            <view>
+              <text class='text-goods-des'>武侯区人民政府(钦善斋食府西南300米)</text>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
+    </scroll-view>
+  </view>
+</view>

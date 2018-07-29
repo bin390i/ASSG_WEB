@@ -1,6 +1,10 @@
 {
   "pages": [
+    "pages/shopList/shopList",    
     "pages/login/login",
+    "pages/list/list",
+    "pages/test/test",
+    "pages/appraisal/appraisal",
     "pages/topic/topic_1/topic_1",
     "pages/topic/topic_2/topic_2",
     "pages/article/article",
@@ -11,14 +15,12 @@
     "pages/main/main",
     "pages/category/category",
     "pages/person/person",
-    "pages/appraisal/appraisal",
     "pages/appraisalList/appraisalList", 
     "pages/detail/detail",
     "pages/cart/cart",
     "pages/orderDetail/orderDetail",
     "pages/confirm/confirm",
     "pages/pay/pay",
-    "pages/list/list",
     "pages/address/address",
     "pages/addAddress/addAddress",
     "pages/goodsAppraisal/goodsAppraisal"
@@ -36,7 +38,7 @@
     "color": "#666",
     "list": [
       {
-        "pagePath": "pages/main/main",
+        "pagePath": "pages/shopList/shopList",
         "iconPath": "static/icon/ic_menu_main_nor.png",
         "selectedIconPath": "static/icon/ic_menu_main_pressed.png",
         "text": "首页"

@@ -1,0 +1,88 @@
+/* pages/shopList/shopList.wxss */
+.searchbar-result{
+    margin-top: 0;
+    font-size: 14px;
+}
+.searchbar-result:before{
+    display: none;
+}
+.weui-cell{
+    padding: 12px 15px 12px 35px;
+}
+
+/* .sort-view{
+  display: flex;
+  padding: 5px 10px;
+  background-color: #FFFFFF;
+} */
+.sort-view{
+  height: 40px;
+  width: 100%;
+  line-height: 40px;
+  padding: 5px 10px;
+  background-color: #FFFFFF;
+}
+.sort-view-1{
+  height: 30px;
+  line-height: 30px;
+  width: 80%;
+  border-right: 1px solid #F0F0F0;
+  display: inline-block; 
+	white-space: nowrap;
+	overflow: hidden; 
+	text-overflow:ellipsis;
+}
+.sort-view-2{
+  float: right;
+  height: 30px;
+  line-height: 30px;
+  width: 20%;
+  text-align: center;
+}
+
+.shop-list{
+  display: flex;
+  flex-direction: row;
+  background-color:  #FFFFFF;
+  padding: 10px 5px;
+  height: 180rpx;
+}
+
+.shop-info{
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  width: 100%;
+}
+.title{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.title-name-view{
+  position: relative;
+  width: 450rpx;
+  display: inline-block; 
+	white-space: nowrap;
+	overflow: hidden; 
+	text-overflow:ellipsis;
+}
+.loading{
+  padding: 10rpx;
+  text-align: center;
+}
+.loading:before{
+  display: inline-block;
+  margin-right: 5rpx;
+  vertical-align: middle;
+  content: '';
+  width: 40rpx;
+  height: 40rpx;
+  background: url(../../images/icon-loading.png) no-repeat;
+  background-size: contain;
+  animation: rotate 1s linear infinite;
+}
+.loading.complete:before{
+  display: none;
+}

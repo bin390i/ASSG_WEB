@@ -46,14 +46,10 @@ Page({
     if (_this.data.addressId == -1) { //新增
       //1、获取当前位置坐标
       wx.getLocation({
-        type: 'wgs84',
+        type: 'gcj02',
         success: function (res) {
           //2、根据坐标获取当前位置名称，腾讯地图逆地址解析
           qqmapsdk.reverseGeocoder({
-            location: {
-              latitude: res.latitude,
-              longitude: res.longitude
-            },
             success: function (addressRes) {
               var formatted_addresses = addressRes.result.formatted_addresses.recommend //地址描述
               var address_component = addressRes.result.address_component; //包含省/市/区,还需解析

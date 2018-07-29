@@ -185,7 +185,7 @@ function btnClickFlag(_this) {
 }
 
 /**
-     * 设置用户授权
+     * 设置授权
      * scopeType:权限类型(userInfo/werun)
      * fun:回调函数，表示需要刷新的内容
      */
@@ -217,11 +217,11 @@ function validateAuthorize(scopeType, fun) {
                     if (res.authSetting['scope.' + scopeType]) { //已请求过授权
                       fun();
                     } else { //未请求过授权
-                      that.validateAuthorize(scopeType, fun);
+                     // that.validateAuthorize(scopeType, fun);
                     }
                   },
                   fail() {
-                    that.validateAuthorize(scopeType, fun);
+                   // that.validateAuthorize(scopeType, fun);
                   }
                 });
               }
@@ -232,6 +232,9 @@ function validateAuthorize(scopeType, fun) {
     }
   })
 }
+  
+
+
 
 module.exports = {
   formatTime,

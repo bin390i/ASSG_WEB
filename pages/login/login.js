@@ -9,10 +9,8 @@ Page({
     getUserInfo: false
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
+  onLoad: function () {
+    console.log("login_onLoad")
     var _this = this;
     wx.getSetting({
       success: (res) => {   //已授权
@@ -52,7 +50,7 @@ Page({
               })
             }
           })
-        } else {
+        } else { //未授权
           _this.setData({
             authSuccess: false
           })
@@ -98,7 +96,7 @@ Page({
                 })
               }
             }
-            , 100)
+            , 10000)
         }
       }
     })
@@ -116,7 +114,6 @@ Page({
     })
   },
   bindGetUserInfo: function (e) {
-    console.log(e.detail.userInfo)
     this.data.getUserInfo = true
   },
 })
