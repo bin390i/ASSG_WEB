@@ -1,4 +1,7 @@
 var api = require('../config/api.js');
+var CryptoJS = require('aes.js');  //引用AES源码js
+var key = CryptoJS.enc.Utf8.parse('2sdfe5xd2fArDdsT');//十六位十六进制数作为秘钥
+var iv = CryptoJS.enc.Utf8.parse('DAB45EF341GHJ412');//十六位十六进制数作为秘钥偏移量
 
 function formatTime(timestamp) {
   var date = new Date(timestamp)
@@ -28,7 +31,7 @@ function formatCouponDate(timestamp) {
   return [yy, month, day].map(formatNumber).join('/')
 }
 
-function formatCountdown(micro_second){
+function formatCountdown(micro_second) {
   var second = micro_second;//总的秒数
   // 天数位
   var day = Math.floor(second / 3600 / 24);
@@ -62,21 +65,34 @@ function formatNumber(n) {
  * 封封微信的的request
  */
 function request(url, data = {}, method = "POST") {
+  var postData = {
+    params: encrypt(JSON.stringify(data))
+  }
+  wx.showLoading({
+    title: '加载中...',
+  })
   return new Promise(function (resolve, reject) {
     wx.request({
       url: url,
-      data: data,
+      data: postData,
       method: method,
       header: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       success: function (res) {
-        console.log("success");
+        wx.hideLoading();
+        var resData = res.data.data;
+        if (isTrue(resData) ) {
+          var decryptText = decrypt(resData)
+          var parseText = JSON.parse(decryptText);
+          res.data.data = parseText.object;
+        }
+          console.log(res.data)
         resolve(res.data);
       },
       fail: function (err) {
+        wx.hideLoading();
         reject(err)
-        console.log("failed")
       }
     })
   });
@@ -98,27 +114,6 @@ function checkSession() {
   });
 }
 
-/**
- * 调用微信登录
- */
-function login() {
-  return new Promise(function (resolve, reject) {
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          //登录远程服务器
-          console.log(res)
-          resolve(res);
-        } else {
-          reject(res);
-        }
-      },
-      fail: function (err) {
-        reject(err);
-      }
-    });
-  });
-}
 
 function getUserInfo() {
   return new Promise(function (resolve, reject) {
@@ -149,12 +144,12 @@ function showErrorToast(msg) {
 /**
  * 显示成功信息
  */
-function showSuccessToast(msg,pageIndex) {
+function showSuccessToast(msg, pageIndex) {
   wx.showToast({
     title: msg,
     image: '/static/icon/ic_toast_success.png',
-    success:function(){
-      if (pageIndex>0){
+    success: function () {
+      if (pageIndex > 0) {
         setTimeout(function () {
           wx.navigateBack({
             delta: pageIndex
@@ -170,7 +165,7 @@ function showSuccessToast(msg,pageIndex) {
 /**
  * 获取缓存中的session
  */
-function getRession(){
+function getRession() {
   return wx.getStorageSync("wxUser");
 }
 
@@ -217,11 +212,11 @@ function validateAuthorize(scopeType, fun) {
                     if (res.authSetting['scope.' + scopeType]) { //已请求过授权
                       fun();
                     } else { //未请求过授权
-                     // that.validateAuthorize(scopeType, fun);
+                      that.validateAuthorize(scopeType, fun);
                     }
                   },
                   fail() {
-                   // that.validateAuthorize(scopeType, fun);
+                    that.validateAuthorize(scopeType, fun);
                   }
                 });
               }
@@ -232,9 +227,39 @@ function validateAuthorize(scopeType, fun) {
     }
   })
 }
-  
 
+/**
+ * 检查字符串是否存在
+ */
+function isTrue(exp) {
+  //var exp = null;
+  if (exp != null && typeof (exp) != "undefined") {
+    return true;
+  } else {
+    return false;
+  }
+}
 
+//格式js计算带来的误差
+function formatJsCompute(num, toFixed) {
+  let base = Math.pow(10, toFixed);
+  return (Math.round(num * base) / base).toFixed(2);
+}
+
+//解密方法
+function decrypt(word) {
+  var encryptedHexStr = CryptoJS.enc.Hex.parse(word); //解析为16进制数据
+  var srcs = CryptoJS.enc.Base64.stringify(encryptedHexStr); //base64解码
+  var decrypt = CryptoJS.AES.decrypt(srcs, key, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 });
+  var decryptedStr = decrypt.toString(CryptoJS.enc.Utf8);
+  return decryptedStr.toString();
+}
+//加密方法
+function encrypt(word) {
+  var srcs = CryptoJS.enc.Utf8.parse(word);
+  var encrypted = CryptoJS.AES.encrypt(word, key, { iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.Pkcs7 });//base64编码后的数据
+  return encrypted.ciphertext.toString().toUpperCase(); //转化为二进制后的数据
+}
 
 module.exports = {
   formatTime,
@@ -244,10 +269,13 @@ module.exports = {
   request,
   showErrorToast,
   checkSession,
-  login,
   getUserInfo,
   getRession,
   showSuccessToast,
   btnClickFlag,
-  validateAuthorize
+  validateAuthorize,
+  isTrue,
+  formatJsCompute,
+  decrypt,
+  encrypt
 }

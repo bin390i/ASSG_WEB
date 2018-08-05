@@ -1,7 +1,4 @@
 <!--pages/confirm.wxml -- 确认订单页面-->
-<!--引入toFixed文件  -->
-<wxs module="filter" src="../../utils/toFixed.wxs"></wxs> 
-
 <view style='margin-bottom:150rpx;border-top: 1px solid #EEEEE0;'>
   <!--无收获地址  -->
   <view wx:if='{{!isAddress}}' bindtap='addAddress' style='background-color: #FFFCDD;'>
@@ -29,7 +26,7 @@
     <text> {{carts.length}}</text>
     <text> 件商品</text>
   </view>
-  <block wx:for='{{carts}}'>
+  <block wx:for='{{carts}}' wx:key='*this'>
     <view class='item'>
       <view>
         <image src="{{item.goods.goodsImg}}"></image>
@@ -40,7 +37,7 @@
           <text space='emsp'>规格: {{item.goods.goodsUnit}}</text>
         </view>
         <view class='item-right-bottom'>
-          <text >￥{{filter.toFix(item.goods.shopPrice)}}</text>
+          <text >￥{{item.goods.shopPrice}}</text>
           <text >x{{item.num}}</text>
         </view>
       </view>
@@ -51,9 +48,9 @@
   <view style='  margin-top: 10px;'>
     <view class='choose-express'>
       <text>选择收货方式：</text>
-      <picker bindchange="bindPickerChange_delivery" value="{{index_delivery}}" range="{{delivery}}">
+      <picker bindchange="bindPickerChange_delivery" value="{{indexDelivery}}" range="{{delivery}}">
         <view class="picker">
-          <text >{{delivery[index_delivery]}}</text>
+          <text >{{delivery[indexDelivery]}}</text>
         </view>
       </picker>
     </view>
@@ -106,7 +103,7 @@
     <view style='padding:10px 10px;'>
       <view class='order-price'>
         <text>商品合计</text>
-        <text>¥{{filter.toFix(totalPrice)}}</text>
+        <text>¥{{totalPrice}}</text>
       </view>
       <!-- <view class='order-price ot'>
         <text>运费金额</text>
@@ -114,12 +111,12 @@
       </view> -->
       <view class='order-price ot'>
         <text>优惠金额</text>
-        <text>¥{{filter.toFix(face)}}</text>
+        <text>¥{{face}}</text>
       </view>
     </view>
     <view class='order-price' style='border-top: 1rpx solid gainsboro;padding:10px 10px;'>
       <text>应付金额</text>
-      <text style='color:red;'>¥{{filter.toFix(totalPrice-face)}}</text>
+      <text style='color:red;'>¥{{totalPrice-face}}</text>
     </view>
   </view>
 
@@ -129,7 +126,7 @@
   <view class="total">
     <view class='leftView'>
       <text>支付金额:</text>
-      <text class='text-goods-price'> ¥{{filter.toFix(totalPrice-face)}}</text>
+      <text class='text-goods-price'> ¥{{totalPrice-face}}</text>
     </view>
     <view class='rightView' catchtap='btnPayView'>
       <text style='color:white;'>结算</text>

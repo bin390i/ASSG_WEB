@@ -1,5 +1,4 @@
 <!--pages/orderDetail/orderDetail.wxml-->
-<wxs module="filter" src="../../utils/toFixed.wxs"></wxs> 
 <view style='margin-bottom:150rpx'>
   <view class='order-tatle'>
     <view class=''>
@@ -12,7 +11,7 @@
     </view>
     <view class='ot'>
       <text>实付金额:</text>
-      <text space='emsp' style='color:red;'> ¥{{filter.toFix(order.payAmount)}}</text>
+      <text space='emsp' style='color:red;'> ¥{{order.payAmount}}</text>
     </view>
     <view class='ot'>
       <text>订单状态:</text>
@@ -23,6 +22,10 @@
     <view class='ot'>
       <text>配送时间:</text>
       <text space='emsp'> {{receiveTime}}</text>
+    </view>
+    <view class='ot'>
+      <text>送货方式:</text>
+      <text space='emsp'> {{order.deliverType==1?'送货上门':'到店自提'}}</text>
     </view>
   </view>
 
@@ -42,7 +45,7 @@
       <text style='color:red;'>{{order.itemCount}}</text>
       <text>件商品</text>
     </view>
-    <block wx:for='{{order.orderItems}}'>
+    <block wx:for='{{order.orderItems}}' wx:key='*this'>
       <view class='item'>
         <view>
           <image src="{{item.goodsImg}}"></image>
@@ -53,7 +56,7 @@
             <text>{{item.goodsUnit}}</text>
           </view>
           <view class='item-right-bottom'>
-            <text style='color:red;'>¥ {{filter.toFix(item.goodsPrice)}}</text>
+            <text style='color:red;'>¥ {{item.goodsPrice}}</text>
             <text style='color:red;'>x {{item.goodsNum}}</text>
           </view>
         </view>
@@ -65,11 +68,11 @@
     <view style='padding:10px 10px;'>
       <view class='order-price'>
         <text>商品合计</text>
-        <text>¥{{filter.toFix(order.orderAmount)}}</text>
+        <text>¥{{order.orderAmount}}</text>
       </view>
       <view class='order-price ot'>
         <text>运费金额</text>
-        <text>¥{{filter.toFix(order.logisticsFee)}}</text>
+        <text>¥{{order.logisticsFee}}</text>
       </view>
       <view class='order-price ot'>
         <text>优惠金额</text>
@@ -78,7 +81,7 @@
     </view>
     <view class='order-price' style='border-top: 1rpx solid gainsboro;padding:10px 10px;'>
       <text>实付金额</text>
-      <text style='color:red;'>¥{{filter.toFix(order.payAmount)}}</text>
+      <text style='color:red;'>¥{{order.payAmount}}</text>
     </view>
   </view>
 

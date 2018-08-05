@@ -1,7 +1,10 @@
 {
   "pages": [
-    "pages/shopList/shopList",    
     "pages/login/login",
+    "pages/shopList/shopList",    
+    "pages/shopGoods/shopGoods",    
+    "pages/cart/cart",
+    "pages/category/category",
     "pages/list/list",
     "pages/test/test",
     "pages/appraisal/appraisal",
@@ -13,11 +16,9 @@
     "pages/coupon/coupon",
     "pages/order/order",
     "pages/main/main",
-    "pages/category/category",
     "pages/person/person",
     "pages/appraisalList/appraisalList", 
     "pages/detail/detail",
-    "pages/cart/cart",
     "pages/orderDetail/orderDetail",
     "pages/confirm/confirm",
     "pages/pay/pay",
@@ -48,18 +49,6 @@
         "iconPath": "static/icon/ic_menu_artic_nor.png",
         "selectedIconPath": "static/icon/ic_menu_artic_pressed.png",
         "text": "果谈"
-      },
-      {
-        "pagePath": "pages/category/category",
-        "iconPath": "static/icon/ic_menu_category_nor.png",
-        "selectedIconPath": "static/icon/ic_menu_category_pressed.png",
-        "text": "分类"
-      },
-      {
-        "pagePath": "pages/cart/cart",
-        "iconPath": "static/icon/ic_menu_shoping_nor.png",
-        "selectedIconPath": "static/icon/ic_menu_shoping_pressed.png",
-        "text": "购物车"
       },
       {
         "pagePath": "pages/person/person",

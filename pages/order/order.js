@@ -49,7 +49,9 @@ Page({
   tabClick: function (e) {
     var _this = this
     var status = new Array();
-    status.push(e.currentTarget.id)
+    if (e.currentTarget.id!=0){
+      status.push(e.currentTarget.id)
+    }
     var data = {
       session: util.getRession(),
       status: JSON.stringify(status)

@@ -3,6 +3,7 @@ const ApiUrl="http://192.168.1.104:8080/";
 module.exports={
   baseUrl:ApiUrl,
   login: ApiUrl + 'loginByWeixin.do',//用户登录相关
+  saveWxUserInfo: ApiUrl + 'saveWxUserInfo.do', //保存用户信息
   classify: ApiUrl + 'wx/mgr_web/classify.do', //分类接口
   goodsList: ApiUrl + 'selectGoodsByClassify.do', //获取当前分类下的所有商品
   saveAddress : ApiUrl + 'saveAddress.do', //保存地址
@@ -30,5 +31,7 @@ module.exports={
   selectGoodsByTopic: ApiUrl + 'selectGoodsByTopic.do', //获取关联商品
   saveSystemInfo: ApiUrl +'saveSystemInfo.do', //保存用户系统信息
   sendMsg: ApiUrl + "sendMsg.do", //用户下单后发送模板消息给商户
-  queryShop: ApiUrl + "wx/web/queryShop.do",
+  queryShop: ApiUrl + "wx/web/queryShop.do",//获取店铺
+  removeCarts: ApiUrl + "wx/web/removeCarts.do",//清空商店的购物车
+  updateAddressStatus: ApiUrl +"setDefaultAddress.do", //设置默认地址
 };

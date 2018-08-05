@@ -1,0 +1,123 @@
+<!--pages/shopGoods/shopGoods.wxml-->
+
+<view class='shop-list' data-shopNo='{{item.shopNo}}' bindtap='goToShop'>
+  <view>
+    <image src='/image/img_shop.png' style='width: 150rpx;height: 150rpx;'></image>
+  </view>
+  <view class='shop-info'>
+    <view class='title'>
+      <view class='title-name-view'>
+        <text class='text-goods-name'>{{shop.name}}</text>
+      </view>
+      <view style=''>
+        <text class='text-goods-des'>{{shop.currentDistance}}km</text>
+      </view>
+    </view>
+    <view>
+      <text class='text-goods-des'>满{{shop.lowprice}}元起送</text>
+    </view>
+    <view class='shop_address'>
+      <text class='text-goods-des'>{{shop.address}}</text>
+    </view>
+  </view>
+</view>
+
+<view style='height:{{height-125}}px;border-top: 1px solid gainsboro;'>
+  <view class="categroy-left">
+    <scroll-view scroll-y="{{isScroll}}" style='height:{{height-125}}px;' scroll-with-animation="true">
+      <view wx:for="{{classify}}" wx:key="index" data-id="{{item.classifyCode}}" data-index="{{index}}" data-classify='{{item.id}}' bindtap="switchTab" class="cate-list {{curIndex === index?'on':''}}">{{item.classifyName}}</view>
+    </scroll-view>
+  </view>
+
+  <view class="categroy-right">
+    <scroll-view  wx:if="{{!none}}" class="categroy-right" scroll-y="true" style='height:{{height-125}}px;' scroll-into-view="{{toView}}" scroll-with-animation="true" bindscrolltolower="bindRightScrollLower">
+      <!--引入toFixed文件  -->
+      <wxs module="filter" src="../../utils/toFixed.wxs"></wxs>
+        <block wx:for='{{goods}}' wx:key='*this'>
+          <view class='goods' bindtap='bindGoods' data-id='{{item.id}}'>
+            <view class='goods-img'>
+              <image class='image' src='{{item.goodsImg}}'></image>
+            </view>
+            <view class='good-des'>
+              <view>
+                <text class='goods-name text-goods-name'>{{item.goodsName}}\n</text>
+                <text class='text-goods-des'>{{item.goodsDesc}}</text>
+              </view>
+              <view>
+                <text class='text-goods-price'>¥{{filter.toFix(item.shopPrice)}}</text>
+                <text class='text-goods-spec' style='margin-left:10px;'>{{item.goodsUnit}}</text>
+              </view>
+            </view>
+            <view class='add-icon' catchtap='addCart' data-goods='{{item.id}}' data-shop-price='{{item.shopPrice}}'>
+              <image src='/static/icon/add.png' style='width:20px;height:20px;'></image>
+            </view>
+          </view>
+      </block>
+    </scroll-view>
+
+    <!--未查询到相关信息  -->
+<view wx:if="{{none}}" class='none'>
+  <image src='../../static/icon/ic_no_goods.png'></image>
+  <text style='font-size:20px; color: #bfbfbf'>\n没有相关商品</text>
+</view>
+  </view>
+</view>
+
+<!--footer-->
+<view class="total">
+  <view class='cart' bindtap='showModel'>
+    <image src='/static/icon/ic_list_shoping.png'></image>
+    <view class='cart-num'>
+      <text style='color:white;'>{{cartNum}}</text>
+    </view>
+  </view>
+  <view class='leftView'>
+    <text>商品总额:</text>
+    <text class='text-goods-price'> ¥{{totalPrice}}</text>
+  </view>
+  <view class='rightView' data-total-price='{{totalPrice}}' catchtap='btnPayView'>
+    <text style='color:white;'>结算</text>
+  </view>
+</view>
+
+<!--遮罩层  -->
+<view class='model-view' hidden='{{modelFlag}}' catchtap='hidenModel'>
+  <view class='model-cont'>
+    <view class='model-cart-top'>
+      <view>
+        <text>购物框</text>
+      </view>
+      <view class='model-del' catchtap='bindClearCart'>
+        <image src='/static/icon/ic_clear.png' style='width:18px;height:18px;'></image>
+        <view>
+          <text>清空购物框</text>
+        </view>
+      </view>
+    </view>
+    <scroll-view scroll-y="true" style='min-height:150px;max-height:280px;'  scroll-with-animation="true">
+    <block wx:for='{{carts}}' wx:key='*this'>
+     <view class='mode-cart-list'>
+      <view class='title-name-view'>
+        <text space='emsp'>{{index+1}} {{item.goods.goodsName}}</text>
+      </view>
+      <view class='right-icon'>
+        <view>
+          <text style='color:red;'>¥{{item.goods.shopPrice}}</text>
+        </view>
+        <view class='right-icon-1'>
+          <view catchtap='minusCount' data-shop-price='{{item.goods.shopPrice}}' data-cartid='{{item.id}}' data-index='{{index}}'>
+            <image src='/static/icon/ic_substract.png' style='width:25px;height:25px;'></image>
+          </view>
+          <view>
+            <text>{{item.num}}</text>
+          </view>
+          <view catchtap='addCount' data-shop-price='{{item.goods.shopPrice}}' data-cartid='{{item.id}}' data-index='{{index}}'>
+            <image src='/static/icon/ic_add.png' style='width:25px;height:25px;'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    </block>
+    </scroll-view >
+  </view>
+</view>

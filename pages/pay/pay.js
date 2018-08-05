@@ -12,6 +12,7 @@ Page({
     wallets_password_flag: false,//密码输入遮罩,
     wallets_password: [], //当前输入的密码
     orderNo: '',
+    currentPageFlag:''
   },
   /**
    * 页面加载事件
@@ -20,6 +21,7 @@ Page({
     var _this = this;
     _this.data.orderNo = option.orderNo
     _this.data.payAmount = option.payAmount
+    _this.data.currentPageFlag = option.currentPage
 
     //加载账户余额
     util.request(api.getAccount, { session: util.getRession() }).then(function (resolve) {
@@ -32,7 +34,7 @@ Page({
       }
     });
   },
-  onReady : function(){
+  onReady: function () {
     var _this = this;
     //加载账户余额
     util.request(api.getAccount, { session: util.getRession() }).then(function (resolve) {
@@ -49,17 +51,11 @@ Page({
    * 监听页面卸载
    */
   onUnload: function () {
-    // wx.showModal({
-    //   title: '确认退出支付',
-    //   content: '您的订单在2小时内未支付将被取消,请尽快完成支付.',
-    //   cancelText:'继续支付',
-    //   confirmText:'确定离开',
-    //   success:function(e){
-    //     wx.redirectTo({
-    //       url: '../order/order',
-    //     })
-    //   }
-    // })
+    if (this.data.currentPageFlag==='confirm'){
+      wx.redirectTo({
+        url: '../order/order',
+      })
+    }
   },
   /**
   * 转换为微信支付
@@ -157,9 +153,9 @@ function wallet_pay(_this, password) {
         title: '支付成功',
         icon: 'success',
         success: function (e) {
-          setTimeout(function(){
-            wx.navigateBack({
-              delta: 1
+          setTimeout(function () {
+            wx.switchTab({
+              url: '/pages/person/person'
             })
           }, 1500)
         }

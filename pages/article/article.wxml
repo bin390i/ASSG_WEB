@@ -1,5 +1,5 @@
 <!--pages/article/article.wxml-->
-<block wx:for='{{articles}}'>
+<block wx:for='{{articles}}' wx:key='*this'>
 <view class='article' bindtap='watchArticleCont' data-id='{{item.id}}'>
  <image src='{{item.image}}'style="width:100%"></image>
  <view class='article-content'>

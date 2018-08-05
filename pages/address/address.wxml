@@ -1,7 +1,7 @@
 <!--pages/address/address.wxml-->
 <view class='address'>
   <view>收货地址</view>
-  <block wx:for="{{address}}">
+  <block wx:for="{{address}}" wx:key='*this'>
     <view class='address_list' >
       <view class='address-con' id='{{item.id}}' bindtap='setStatus'>
         <!--左侧图标  -->
@@ -24,8 +24,6 @@
   </block>
 </view>
 
-<import src="/common/common.wxml" />
-<template is="placeholder_footer" />
 <!--新增收货地址  -->
 <view class='add_address' catchtap='add_address'>
   <text style='font-size: 14px; color: #FFFFFF;'>新增收货地址 +</text>

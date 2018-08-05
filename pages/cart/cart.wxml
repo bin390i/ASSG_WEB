@@ -13,7 +13,6 @@
 
   <!--列表  -->
   <view wx:if='{{!empty}}' class='{{totalPrice<baoyouPrice? "container":""}}'>  
-  
     <!--左滑删除  -->
     <view class="touch-item {{item.isTouchMove ? 'touch-move-active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{carts}}" wx:key="">
       <view class="content">

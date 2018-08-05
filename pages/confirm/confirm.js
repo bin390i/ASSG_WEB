@@ -11,23 +11,28 @@ Page({
   data: {
     index_delivery: 0,
     delivery: ['送货上门', '到店取货'], //送货方式
+    indexDelivery:0,
     remark: '',
     addressId: -1,
     url: api.baseUrl,
     date: '2016-09-01',
     startTime: '9:01',
     endTime: '18:01',
-    realPayAmount: 0,
-    totalAmount: 0,
+    realPayAmount: '0.00',
+    totalAmount: '0.00',
     logisticsFee: 5,
     animationData: {},//选择动画
     showModalStatus: false, //显示遮罩,
     btnClickFlag: true,
     cpCode:'',
-    face:0.00
+    face:'0.00',
+    shopNo:''
   },
   onLoad: function (options) {
     var _this = this;
+    if(util.isTrue(options.shopNo)){
+      _this.data.shopNo = options.shopNo;
+    }
     //页面卸载的时候,清除优惠券缓存
     wx.removeStorageSync("chooseCp");
   },
@@ -65,7 +70,7 @@ Page({
       if (resolve.code == constant.QUERY_OK) {
         _this.setData({
           carts: resolve.data,
-          totalPrice: _this.getTotalPrice(resolve.data),
+          totalPrice: parseFloat(_this.getTotalPrice(resolve.data)),
           date: date,
         })
       }
@@ -118,9 +123,9 @@ Page({
         totalPrice = totalPrice + items[i].num * items[i].goods.shopPrice;
       }
     }
-    this.data.totalAmount = totalPrice
-    this.data.realPayAmount = totalPrice
-    return totalPrice;
+    this.data.totalAmount = util.formatJsCompute(totalPrice,2);
+    this.data.realPayAmount = util.formatJsCompute(totalPrice, 2);
+    return util.formatJsCompute(totalPrice, 2);
   },
 
   /**
@@ -183,9 +188,9 @@ Page({
    * 选择收货方式
    */
   bindPickerChange_delivery: function (e) {
-    this.data.index__delivery = e.detail.value
+    this.data.indexDelivery = e.detail.value
     this.setData({
-      index: this.data.index__delivery
+      indexDelivery: this.data.indexDelivery
     })
   },
   /**
@@ -198,20 +203,21 @@ Page({
       var data = {
         session: util.getRession(),
         addressId: _this.data.addressId,
-        deliverType: _this.data.index_delivery + 1,
+        deliverType: _this.data.indexDelivery + 1,
         receiveStartTime: _this.data.date + ' ' + _this.data.startTime + ':00',
         receiveEndTime: _this.data.date + ' ' + _this.data.endTime + ':00',
         note: _this.data.remark,
         logisticsFee: _this.data.logisticsFee,
         realPayAmount: _this.data.realPayAmount,
         totalAmount: _this.data.totalAmount,
-        cpCode: _this.data.cpCode
+        cpCode: _this.data.cpCode,
+        shopNo :_this.data.shopNo
       }
       util.request(api.creatOrder, data).then(function (resolve) {
         if (resolve.code == constant.QUERY_OK) {
           var orderNo = resolve.data;
           wx.redirectTo({
-            url: '../pay/pay?orderNo=' + orderNo + '&payAmount=' + _this.data.realPayAmount,
+            url: '../pay/pay?orderNo=' + orderNo + '&payAmount=' + _this.data.realPayAmount+'&currentPage=confirm',
           })
         } else {
           util.showErrorToast("订单生成异常");
@@ -256,8 +262,6 @@ Page({
       showModalStatus: false,//隐藏遮罩       
     })
   },
-/**
- * 
- */
+
 
 })

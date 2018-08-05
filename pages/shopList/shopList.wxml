@@ -31,7 +31,7 @@
   <view class='sort-view'>
     <view class='sort-view-1'>
       <image src="../../static/icon/address.png" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
-      <text >{{currentAddress}}</text>
+      <text>{{currentAddress}}</text>
     </view>
     <view class='sort-view-2'>
       <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
@@ -42,10 +42,10 @@
     </view>
   </view>
   <!--店铺列表  -->
-  <view style="margin-top:5px;">
-    <scroll-view scroll-y="true" lower-threshold='1' style='height:{{height-90}}px;' bindscrolltolower="searchScrollLower">
+  <view style="margin-top:5px;" wx:if="{{!none}}">
+    <scroll-view scroll-y="true" lower-threshold='50' style='height:{{height-90}}px;' bindscrolltolower="searchScrollLower">
       <block wx:for='{{shopList}}' wx:key='*this'>
-        <view class='shop-list' data-shopNo='{{item.shopNo}}' bindtap='goToShop'>
+        <view class='shop-list' data-index='{{index}}' bindtap='goToShop'>
           <view>
             <image src='/image/img_shop.png' style='width: 150rpx;height: 150rpx;'></image>
           </view>
@@ -61,8 +61,8 @@
             <view>
               <text class='text-goods-des'>满{{item.lowprice}}元起送</text>
             </view>
-            <view>
-              <text class='text-goods-des'>武侯区人民政府(钦善斋食府西南300米)</text>
+            <view class='shop_address'>
+              <text class='text-goods-des'>{{item.address}}</text>
             </view>
           </view>
         </view>
@@ -70,4 +70,11 @@
       <view class="loading complete" hidden="{{!searchLoadingComplete}}">已加载全部</view>
     </scroll-view>
   </view>
+</view>
+
+<!--未查询到相关店铺列表  -->
+<view wx:if="{{none}}" class='none'>
+  <image src='../../static/icon/icon_no_shop.png'></image>
+  <text style='font-size:20px; color: #bfbfbf'>\n周围商圈即将开通</text>
+  <text style='font-size:20px; color: #bfbfbf'>\n欢迎您的光临</text>
 </view>
